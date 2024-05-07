@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>サンプル</title>
+    <link href="pokoStyle.css" rel="stylesheet">
+</head>
+
+<body>
+    <h2 class="GAMEOVER comm"></h1>
+    <h2 class="RESTART comm"></h1>
+    <p><div style="text-align: center;"><img class="poko" src = "hurimuki.png"></div></p>
+
+    <div class="body">
+        <div class="goal" ><img class="pl_size" src = "goal.png"></div>
+        <div  class="player"><img class="pl_size" src="player.png"></div>
+    </div>
+    <script>
+        let cnt = 0;
+        let ran = 0;
+        let x = 20;//プレイヤー位置
+        let move = window.innerWidth / 80;
+        let pokoh = document.querySelector(".poko");
+        let player = document.querySelector(".player");
+        let body = document.querySelector("body");
+        let over = document.querySelector(".GAMEOVER");
+        let re = document.querySelector(".RESTART");
+        let hurimuki = false,press = false;
+        let a = setInterval(random, 80)
+        var pics = new Array("hurimuki.png","poko.png","over.png");
+    
+        function random() {
+            if(press && hurimuki){
+                body.style.backgroundColor = "Black";
+                over.innerHTML = "GAMEOVER";
+                re.innerHTML = "Enter or Tap Screen"
+                pokoh.src = pics[2];
+                clearInterval(a);
+            }
+            if(x >= window.innerWidth - 30){
+                over.innerHTML = "クリアおめでとう!!!!!!!!";
+                clearInterval(a);
+            }
+            player.style.right = x + 'px';
+            if(press){
+                x = x + move;
+            }
+            if (!hurimuki) {
+                ran = Math.floor(Math.random() * 10);
+                pokoh.src = pics[0];
+                if (ran == 3) {
+                    pokoh.src = pics[1];
+                    hurimuki = true;
+                }
+            }else{
+                cnt++;
+                if(cnt == 20){
+                    hurimuki = false;
+                    cnt = 0;
+                }
+            }
+            document.addEventListener('keydown',function(){
+                if( event.keyCode === 37 ){
+                press = true;
+                }else if(event.keyCode === 13){
+                    window.location.reload();
+                }
+                
+            ;});
+           document.addEventListener('touchstart',function(){
+            if(press && hurimuki){
+                window.location.reload();
+            }else{
+                press = true;
+            }
+            ;});
+            document.addEventListener('keyup',function(){
+                press = false;
+            ;});
+            document.addEventListener('touchend',function(){
+                press = false;
+            ;});
+        }
+    </script>
+</body>
+
+</html>
