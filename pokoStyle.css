@@ -1,6 +1,8 @@
 .poko {
     width: 30%;
 }
+.head{
+}
 .pl_size{
     width: 6vw;
 }
@@ -11,7 +13,7 @@
 .body {
     display: flex;
     position: fixed;
-    bottom: 0;
+    top: 40%;
 }
 
 .GAMEOVER{
@@ -23,6 +25,5 @@
     size: 100%;
 }
 .comm{
-
     text-align: center;
 }
