@@ -13,7 +13,7 @@
 .body {
     display: flex;
     position: fixed;
-    bottom: 0%;
+    bottom: 0;
 }
 
 .GAMEOVER{
